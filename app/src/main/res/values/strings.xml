@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">iCloud</string>
+    <string name="app_name">iCloud - The Rising</string>
     <string name="action_settings">Pop Up</string>
     <string name="options_exit_text">Exit</string>
     <string name="listTitle">ShowAppSwag</string>
