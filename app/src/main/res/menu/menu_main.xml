@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <!-- Settings Icon -->
+    <item
+        android:icon="@drawable/icon_settings"
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+
+    <!-- Exit Icon -->
+    <item
+        android:icon="@drawable/icon_exit"
+        android:id="@+id/exit_the_app"
+        android:title="@string/options_exit_text"
+        app:showAsAction="ifRoom|withText"
+        android:orderInCategory="101"/>
+</menu>

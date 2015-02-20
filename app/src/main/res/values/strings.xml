@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">iCloud</string>
+    <string name="action_settings">Pop Up</string>
+    <string name="options_exit_text">Exit</string>
+    <string name="listTitle">ShowAppSwag</string>
+    <string name="extra_swag_view">SWAG</string>
+
+    //row_layout_textviews
+    <string name="default_textview1">Random H1Z1</string>
+    <string name="default_textview2">ADD NEW SHOW</string>
+
+</resources>
