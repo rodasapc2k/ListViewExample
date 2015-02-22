@@ -25,21 +25,25 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        loadActivity();
+
+    }
+
+    private void loadActivity(){
+
         setContentView(R.layout.activity_main);
 
 
-
-        ListAdapter theAdapter = new MyAdapter(this, arTV);
+        //Cria o ArrayAdapter customizado passando a ArrayList global
+        final ListAdapter theAdapter = new MyAdapter(this, arTV);
 
         //Add xml a ListView e set o MyAdapter.class
         ListView theListView = (ListView) findViewById(R.id.listView1);
 
-
-        //Cria a view do footer e add
+        //Cria a view do footer e imbute o xml
         View footer = getLayoutInflater().inflate(R.layout.row_layout_2, null);
 
-
-        //TODO: Mete o click listener clickable. (Programa crasha quando clico num show depois de clicar no footer)
 
         final String newShow = "Attack on Titan";
 
@@ -47,7 +51,20 @@ public class MainActivity extends ActionBarActivity {
         footer.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+
+                        //a view é clickable
+                        Toast.makeText(MainActivity.this, "footer clicked",Toast.LENGTH_LONG).show();
                         arTV.add(newShow);
+                        loadActivity();
+                        //TODO: Fazer update da ListView depois de add a string
+
+                                    /*  ----------------------------------------
+                                        Isto funciona se a string estiver a vir de fora da activity
+                                        estes 2 comandos reiniciam por completo a activity. De momemto nao usavel.
+
+                                            finish();
+                                            startActivity(getIntent());
+                                    ------------------------------------------ */
                     }
                 }
         );
@@ -69,9 +86,6 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
-
-
-
     }
 
 
