@@ -1,13 +1,18 @@
 package com.rodasapc.listviewexample;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -45,30 +50,39 @@ public class MainActivity extends ActionBarActivity {
         View footer = getLayoutInflater().inflate(R.layout.row_layout_2, null);
 
 
-        final String newShow = "Attack on Titan";
+
+        final AlertDialog.Builder popup = new AlertDialog.Builder(this);
+        final EditText inputString = new EditText(this);
+        inputString.setGravity(Gravity.CENTER);
+        popup.setView(inputString);
+        popup.setTitle("Add New Show");
+
+        popup.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String newShow = inputString.getText().toString();
+
+                arTV.add(newShow);
+                loadActivity();
+                Toast.makeText(MainActivity.this, "You added " + newShow + "to your List!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        popup.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getBaseContext(), "Clicked CANCEL!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         footer.setClickable(true);
         footer.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-
-                        //a view é clickable
-                        Toast.makeText(MainActivity.this, "footer clicked",Toast.LENGTH_LONG).show();
-                        arTV.add(newShow);
-                        loadActivity();
-                        //TODO: Fazer update da ListView depois de add a string
-
-                                    /*  ----------------------------------------
-                                        Isto funciona se a string estiver a vir de fora da activity
-                                        estes 2 comandos reiniciam por completo a activity. De momemto nao usavel.
-
-                                            finish();
-                                            startActivity(getIntent());
-                                    ------------------------------------------ */
+                        popup.show();
                     }
                 }
         );
-
 
         theListView.addFooterView(footer);
 
@@ -86,6 +100,8 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
+
+        //TODO: Delete items when swiped
     }
 
 

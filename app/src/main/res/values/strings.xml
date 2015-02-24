@@ -10,5 +10,6 @@
     //row_layout_textviews
     <string name="default_textview1">Random H1Z1</string>
     <string name="default_textview2">ADD NEW SHOW</string>
+    <string name="input_new_show">New Show</string>
 
 </resources>
