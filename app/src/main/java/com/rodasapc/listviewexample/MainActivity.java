@@ -109,6 +109,7 @@ public class MainActivity extends ActionBarActivity {
             public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int position, long id) {
                 delCheck.setTitle(String.valueOf(adapterView.getItemAtPosition(position)));
                 delCheck.setMessage("Do you want to delete \n" + String.valueOf(adapterView.getItemAtPosition(position)) + "?");
+                delCheck.setIcon(R.drawable.mushroom);
 
                 delCheck.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
