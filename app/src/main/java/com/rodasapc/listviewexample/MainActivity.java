@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -57,14 +56,14 @@ public class MainActivity extends ActionBarActivity {
         popup.setView(inputString);
         popup.setTitle("Add New Show");
 
-        popup.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        popup.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String newShow = inputString.getText().toString();
 
                 arTV.add(newShow);
                 loadActivity();
-                Toast.makeText(MainActivity.this, "You added " + newShow + "to your List!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "You added " + newShow + " to your List!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -101,7 +100,37 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        //TODO: Delete items when swiped
+        //Delete Item Popup Create
+
+        final AlertDialog.Builder delCheck = new AlertDialog.Builder(this);
+
+        theListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int position, long id) {
+                delCheck.setTitle(String.valueOf(adapterView.getItemAtPosition(position)));
+                delCheck.setMessage("Do you want to delete \n" + String.valueOf(adapterView.getItemAtPosition(position)) + "?");
+
+                delCheck.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        arTV.remove(adapterView.getItemAtPosition(position));
+                        loadActivity();
+                    }
+                });
+
+                delCheck.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getBaseContext(), "Clicked CANCEL!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                delCheck.show();
+
+                return false;
+            }
+        });
+
     }
 
 
